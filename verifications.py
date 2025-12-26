@@ -103,18 +103,19 @@ def cell14_check(row, config):
     cell14 = row[13]
     if pd.isna(cell14):
         return (False, "Пустая ячейка")
-    if "," in cell14:
-        temp_dates = cell14.split(",")
-    else:
-        temp_dates = [cell14]
-    dates = []
-    for date in temp_dates:
-        dates.append(date.split("от")[1].strip())
     try:
+        if "," in cell14:
+            temp_dates = cell14.split(",")
+        else:
+            temp_dates = [cell14]
+        dates = []
+        for date in temp_dates:
+            dates.append(date.split("от")[1].strip().split(" ")[0].strip())
+
         for date in dates:
             try_date = pd.to_datetime(date, format='%d.%m.%Y')
         return (True, "")
-    except (ValueError, TypeError):
+    except (ValueError, TypeError, IndexError):
         return (False, "Не является датой")
 
 def dates_comparation45(date4, date5):
@@ -141,7 +142,7 @@ def dates_comparation145(date14, date5):
         temp_dates = [date14]
     dates = []
     for date in temp_dates:
-        dates.append(date.split("от")[1].strip())
+        dates.append(date.split("от")[1].strip().split(" ")[0].strip())
 
     for date in dates:
         if date5 <= pd.to_datetime(date, format='%d.%m.%Y'):
