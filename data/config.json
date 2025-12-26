@@ -1,0 +1,14 @@
+{
+  "database_path": "data/Insurance.xlsx",
+  "start_row": "None",
+  "end_row": "30",
+  "exact_row_num": "None",
+  "exact_col_char": "None",
+  "columns": "35",
+  "columns_names": [
+        "A", "B", "C", "D", "E", "F", "G", "H", "I", "J",
+        "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T",
+        "U", "V", "W", "X", "Y", "Z", "AA", "AB", "AC", "AD",
+        "AE", "AF", "AG", "AH", "AI"
+    ]
+}
