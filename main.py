@@ -163,7 +163,3 @@ if __name__ == "__main__":
     parced_result = parce_rows(table, config)
     all_errors = check_all(parced_result, config)
     error_print(all_errors, config)
-
-
-
-
