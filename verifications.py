@@ -132,7 +132,7 @@ def dates_comparation75(date7, date5):
 
 def dates_comparation5t(date5):
     if (datetime.today() - date5).days > 5:
-        return (False, "Проверить уведомления ТО, СК")
+        return (False, "Проверить заполнение данных по уведомлениям ТО и СК")
     return (True, "")
 
 def dates_comparation145(date14, date5):
