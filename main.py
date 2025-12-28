@@ -1,4 +1,3 @@
-import pandas as pd
 import json
 from verifications import *
 
@@ -43,90 +42,85 @@ def error_print(errors_array): # Дописать вывод ошибок по �
 
 
 def check_all(table, config):
-    errors = []
     if config["start_row"] == "None":
         offset = 0
     else:
         offset = int(config["start_row"]) - 7
+
+    errors = []
     for i in range(len(table)):
         row = table[i]
 
         res_1 = cell1_check(row)
-        if not res_1[0]:
-            errors.append([feedback_index(i + offset, 0, config), res_1[1]])
-
         res_2 = cell2_check(row)
-        if not res_2[0]:
-            errors.append([feedback_index(i + offset, 1, config), res_2[1]])
-
         res_3 = cell3_check(row)
-        if not res_3[0]:
-            errors.append([feedback_index(i + offset, 2, config), res_3[1]])
-
         res_4 = cell4_check(row)
-        if not res_4[0]:
-            errors.append([feedback_index(i + offset, 3, config), res_4[1]])
-
         res_5 = cell5_check(row)
-        if not res_5[0]:
-            errors.append([feedback_index(i + offset, 4, config), res_5[1]])
+        res_6 = cell6_check(row)
+        res_7 = cell7_check(row)
+        res_8 = cell8_check(row)
+        res_9 = cell9_check(row)
+        res_10 = cell10_check(row)
+        res_11 = cell11_check(row)
+        res_12 = cell12_check(row)
+        res_13 = cell13_check(row)
+        res_14 = cell14_check(row)
 
         if res_4[0] and res_5[0]:
             res_4_5 = dates_comparation45(pd.to_datetime(row[3]), pd.to_datetime(row[4]))
             if not res_4_5[0]:
                 errors.append([[feedback_index(i + offset, 3, config), feedback_index(i + offset, 4, config)], res_4_5[1]])
 
-        res_6 = cell6_check(row)
-        if not res_6[0]:
-            errors.append([feedback_index(i + offset, 5, config), res_6[1]])
-
-        res_7 = cell7_check(row)
-        if not res_7[0]:
-            errors.append([feedback_index(i + offset, 6, config), res_7[1]])
-
         if res_7[0] and res_5[0]:
             res_7_5 = dates_comparation75(pd.to_datetime(row[6]), pd.to_datetime(row[4]))
             if not res_7_5[0]:
                 errors.append([[feedback_index(i + offset, 6, config), feedback_index(i + offset, 4, config)], res_7_5[1]])
 
-        if (res_7[1] == "Пустая ячейка" or res_4[1] == "Пустая ячейка") and res_5[0]:
+        if (res_7[1] == "Пустая ячейка" or res_4[1] == "Пустая ячейка" or res_3[1] == "Пустая ячейка" or res_6[1] == "Пустая ячейка") and res_5[0]:
             res_5t = dates_comparation5t(pd.to_datetime(row[4]))
             if not res_5t[0]:
                 errors.append([feedback_index(i + offset, 4, config), res_5t[1]])
-
-        res_8 = cell8_check(row)
-        if not res_8[0]:
-            errors.append([feedback_index(i + offset, 7, config), res_8[1]])
-
-        res_9 = cell9_check(row)
-        if not res_9[0]:
-            errors.append([feedback_index(i + offset, 8, config), res_9[1]])
-
-        res_10 = cell10_check(row)
-        if not res_10[0]:
-            errors.append([feedback_index(i + offset, 9, config), res_10[1]])
-
-        res_11 = cell11_check(row)
-        if not res_11[0]:
-            errors.append([feedback_index(i + offset, 10, config), res_11[1]])
-
-        res_12 = cell12_check(row)
-        if not res_12[0]:
-            errors.append([feedback_index(i + offset, 11, config), res_12[1]])
-
-        res_13 = cell13_check(row)
-        if not res_13[0]:
-            errors.append([feedback_index(i + offset, 12, config), res_13[1]])
-
-        res_14 = cell14_check(row)
-        if not res_14[0]:
-            errors.append([feedback_index(i + offset, 13, config), res_14[1]])
 
         if res_5[0] and res_14[0]:
             res_14_5 = dates_comparation145(row[13], pd.to_datetime(row[4]))
             if not res_14_5[0]:
                 errors.append([[feedback_index(i + offset, 13, config), feedback_index(i + offset, 4, config)], res_14_5[1]])
 
+        if not res_1[0]:
+            errors.append([feedback_index(i + offset, 0, config), res_1[1]])
+
+        if not res_2[0]:
+            errors.append([feedback_index(i + offset, 1, config), res_2[1]])
+
+        if not res_4[0] and not res_4[1] == "Пустая ячейка":
+            errors.append([feedback_index(i + offset, 3, config), res_4[1]])
+
+        if not res_5[0]:
+            errors.append([feedback_index(i + offset, 4, config), res_5[1]])
+
+        if not res_7[0] and not res_7[1] == "Пустая ячейка":
+            errors.append([feedback_index(i + offset, 6, config), res_7[1]])
+
+        if not res_8[0]:
+            errors.append([feedback_index(i + offset, 7, config), res_8[1]])
+
+        if not res_9[0]:
+            errors.append([feedback_index(i + offset, 8, config), res_9[1]])
+
+        if not res_10[0]:
+            errors.append([feedback_index(i + offset, 9, config), res_10[1]])
+
+        if not res_11[0]:
+            errors.append([feedback_index(i + offset, 10, config), res_11[1]])
+
+        if not res_12[0]:
+            errors.append([feedback_index(i + offset, 11, config), res_12[1]])
+
+        if not res_13[0]:
+            errors.append([feedback_index(i + offset, 12, config), res_13[1]])
+
+        if not res_14[0]:
+            errors.append([feedback_index(i + offset, 13, config), res_14[1]])
 
     return errors
 
